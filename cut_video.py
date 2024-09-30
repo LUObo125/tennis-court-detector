@@ -35,7 +35,7 @@ for i, video_file in enumerate(video_files):
     fps = cap.get(cv2.CAP_PROP_FPS)
 
     # 初始化变量
-    frame_count = 0
+    frame_count = -1
     start_frame = 0
     end_frame = 0
     is_playing = False
@@ -73,7 +73,7 @@ for i, video_file in enumerate(video_files):
                     cap.set(cv2.CAP_PROP_POS_FRAMES, start_frame - 1)
                     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
                     out = cv2.VideoWriter(f'output_video_{output_video_count}.mp4', fourcc, fps, (frame.shape[1], frame.shape[0]))
-                    for i in range(start_frame, end_frame):
+                    for i in range(start_frame, end_frame-1):
                         ret, frame = cap.read()
                         if ret:
                             out.write(frame)
